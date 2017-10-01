@@ -97,12 +97,40 @@ public String getName(int year , int rank , String gender){
 	
     }
 
+ public void WhatIsNameInYear(String name , int year , int newYear , String gender){
+	
+	int rank = getRank(name , gender , year);
+	String newName = getName(newYear , rank , gender);
+	if(newName.equals("NO NAME"))
+	   newName = "Unspecified";
+	
+	System.out.println(name + " born in " + year + " would be named " + newName + " if " + (gender == "M" ? "he" : "she") + " was born in " + newYear);
+	
+	
+	}
+ 
+ 
+   public void testWhatIsNameInYear(){
+	   WhatIsNameInYear("Isabella" , 2012 , 2014, "F");
+	  
+	   
+   }
+
+
    public void testGetName(){
 	   
 	 System.out.println(getName(2012 , 2 , "M"));  
 	 System.out.println(getName(2012 , 3 , "F")); 
 	 System.out.println(getName(2012 , 10 , "M"));  
    }
+   
+   public void testGetRank(){
+		
+		System.out.println(getRank("Mason" , "M" , 2012));
+		System.out.println(getRank("Mason" , "F" , 2012));
+
+	}
+	
 
 	public void testTotalBirths(){
 		
@@ -112,20 +140,13 @@ public String getName(int year , int rank , String gender){
 	}	
 	
 	
-	
-	public void testGetRank(){
-		
-		System.out.println(getRank("Mason" , "M" , 2012));
-		System.out.println(getRank("Mason" , "F" , 2012));
-
-	}
-	
 	public void testClassMethods(){
-		
+	
 		testTotalBirths();	
 		testGetRank();
 		testGetName();
-		
+		testWhatIsNameInYear();
+	
 		}	
 	
 }
