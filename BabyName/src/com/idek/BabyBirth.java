@@ -1,9 +1,11 @@
 package com.idek;
 
+
+
 import org.apache.commons.csv.*;
 import edu.duke.*;
-//import java.io.File;
-//import java.text.DecimalFormat;
+import java.io.File;
+import java.text.DecimalFormat;
 
 public class BabyBirth {
   
@@ -127,6 +129,49 @@ public String getName(int year , int rank , String gender){
 	 
  }
  
+ public double getAverageRank(String name , String gender){
+	 
+	 DirectoryResource dr = new DirectoryResource();
+	 DecimalFormat twoPoints = new DecimalFormat("#.##");
+	 boolean found = false;
+	 int currRank = 0;
+	 int totalRank = 0;
+	 int totalNumberOfRank = 0;
+	 for(File fl : dr.selectedFiles()){
+		 
+		  currRank = 0;
+		  FileResource fr = new FileResource(fl);
+		  for(CSVRecord rec : fr.getCSVParser(false)){
+				
+				if(!rec.get(1).equals(gender))
+				   continue;
+				currRank = currRank + 1;
+				if(rec.get(0).equals(name)){
+					
+					System.out.println(currRank + " " + totalRank);
+					found = true;
+					totalRank = totalRank + 1;
+					totalNumberOfRank += currRank;
+				
+					break;
+				 }
+		    }
+		 
+	   }
+	 if(found == false)
+		return -1.0;
+	 else
+		return Double.valueOf(twoPoints.format(totalNumberOfRank / (double)totalRank));
+	
+	 
+	 
+ }
+ 
+ public void testGetAverageRank(){
+	 
+	 System.out.println(getAverageRank("Jacob" , "M"));
+ }
+ 
  public void testYearOfHighestRank(){
 	 
 	 System.out.println(yearOfHighestRank("Mason" , "M"));
@@ -170,6 +215,8 @@ public String getName(int year , int rank , String gender){
 		testGetName();
 		testWhatIsNameInYear();
 	    testYearOfHighestRank();
-		}	
+	    testGetAverageRank();
+		
+	}	
 	
 }
