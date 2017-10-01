@@ -1,7 +1,9 @@
 package com.idek;
 
-import org.apache.commons.csv.CSVRecord;
-import edu.duke.FileResource;
+import org.apache.commons.csv.*;
+import edu.duke.*;
+//import java.io.File;
+//import java.text.DecimalFormat;
 
 public class BabyBirth {
   
@@ -48,17 +50,50 @@ public class BabyBirth {
 		 System.out.println("Total femalebirths :" +femaleBirths);
 		
 	}
+	
+public int getRank(String name , String gender , int year){
+		System.out.println("entered get rank");
+		String fileName = "C:\\Users\\ASUS DESKtop\\Documents\\BabyInformation\\yob" + String.valueOf(year) + "short.csv";
+		
+		int rank = 0;
+		FileResource fr = new FileResource(fileName);
+		for(CSVRecord rec : fr.getCSVParser(false)){
+			
+			if(!rec.get(1).equals(gender))
+			   continue;
+			
+			rank = rank + 1;
+			if(rec.get(0).equals(name)){
+				System.out.println("exitting get rank");
+				return rank;
+			}
+			
+		}
+		System.out.println("exitting get rank");
+		return -1;
+		
+	}
 	public void testTotalBirths(){
 		
 		 FileResource fr = new FileResource();
 		 totalBirths(fr);
 		
 	}	
+	
+	
+	
+	public void testGetRank(){
+		
+		System.out.println(getRank("Mason" , "M" , 2012));
+		System.out.println(getRank("Mason" , "F" , 2012));
+
+	}
+	
 	public void testClassMethods(){
 		
-	testTotalBirths();	
-	
-	}	
-	
+		testTotalBirths();	
+		testGetRank();
+		
+		}	
 	
 }
