@@ -109,6 +109,29 @@ public String getName(int year , int rank , String gender){
 	
 	}
  
+ public int yearOfHighestRank(String name , String gender){
+	 
+	  int minRank = Integer.MAX_VALUE;
+	  int currRank;
+	  int minRankYear = -1;
+	  for(int year = 2012; year<=2014; year++){
+		   currRank = getRank(name , gender , year);
+		   if(minRank > currRank){
+			   minRank = currRank;
+			   minRankYear = year;
+			   
+			    }
+		  
+		   }
+	return  minRankYear;
+	 
+ }
+ 
+ public void testYearOfHighestRank(){
+	 
+	 System.out.println(yearOfHighestRank("Mason" , "M"));
+	 
+ }
  
    public void testWhatIsNameInYear(){
 	   WhatIsNameInYear("Isabella" , 2012 , 2014, "F");
@@ -146,7 +169,7 @@ public String getName(int year , int rank , String gender){
 		testGetRank();
 		testGetName();
 		testWhatIsNameInYear();
-	
+	    testYearOfHighestRank();
 		}	
 	
 }
