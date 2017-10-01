@@ -52,7 +52,8 @@ public class BabyBirth {
 	}
 	
 public int getRank(String name , String gender , int year){
-		System.out.println("entered get rank");
+		
+	    System.out.println("entered get rank");
 		String fileName = "C:\\Users\\ASUS DESKtop\\Documents\\BabyInformation\\yob" + String.valueOf(year) + "short.csv";
 		
 		int rank = 0;
@@ -64,7 +65,9 @@ public int getRank(String name , String gender , int year){
 			
 			rank = rank + 1;
 			if(rec.get(0).equals(name)){
+				
 				System.out.println("exitting get rank");
+				
 				return rank;
 			}
 			
@@ -73,6 +76,34 @@ public int getRank(String name , String gender , int year){
 		return -1;
 		
 	}
+
+public String getName(int year , int rank , String gender){
+	
+	String fileName = "C:\\Users\\ASUS DESKtop\\Documents\\BabyInformation\\yob" + String.valueOf(year) + "short.csv";
+	FileResource fr = new FileResource(fileName);
+	int currRank = 0;
+	for(CSVRecord rec : fr.getCSVParser(false)){
+		
+		if(!rec.get(1).equals(gender))
+		   continue;
+		currRank = currRank + 1;
+		if(currRank == rank)
+			return rec.get(0);
+		
+		}
+	
+	return "NO NAME";
+	
+	
+    }
+
+   public void testGetName(){
+	   
+	 System.out.println(getName(2012 , 2 , "M"));  
+	 System.out.println(getName(2012 , 3 , "F")); 
+	 System.out.println(getName(2012 , 10 , "M"));  
+   }
+
 	public void testTotalBirths(){
 		
 		 FileResource fr = new FileResource();
@@ -93,6 +124,7 @@ public int getRank(String name , String gender , int year){
 		
 		testTotalBirths();	
 		testGetRank();
+		testGetName();
 		
 		}	
 	
