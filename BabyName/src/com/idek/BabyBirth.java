@@ -1,7 +1,5 @@
 package com.idek;
 
-
-
 import org.apache.commons.csv.*;
 import edu.duke.*;
 import java.io.File;
@@ -53,7 +51,7 @@ public class BabyBirth {
 		
 	}
 	
-public int getRank(String name , String gender , int year){
+   public int getRank(String name , String gender , int year){
 		
 	   // System.out.println("entered get rank");
 		String fileName = "C:\\Users\\ASUS DESKtop\\Documents\\BabyInformation\\yob" + String.valueOf(year) + "short.csv";
@@ -79,7 +77,7 @@ public int getRank(String name , String gender , int year){
 		
 	}
 
-public String getName(int year , int rank , String gender){
+    public String getName(int year , int rank , String gender){
 	
 	String fileName = "C:\\Users\\ASUS DESKtop\\Documents\\BabyInformation\\yob" + String.valueOf(year) + "short.csv";
 	FileResource fr = new FileResource(fileName);
@@ -99,7 +97,7 @@ public String getName(int year , int rank , String gender){
 	
     }
 
- public void WhatIsNameInYear(String name , int year , int newYear , String gender){
+    public void WhatIsNameInYear(String name , int year , int newYear , String gender){
 	
 	int rank = getRank(name , gender , year);
 	String newName = getName(newYear , rank , gender);
@@ -111,7 +109,7 @@ public String getName(int year , int rank , String gender){
 	
 	}
  
- public int yearOfHighestRank(String name , String gender){
+    public int yearOfHighestRank(String name , String gender){
 	 
 	  int minRank = Integer.MAX_VALUE;
 	  int currRank;
@@ -127,9 +125,9 @@ public String getName(int year , int rank , String gender){
 		   }
 	return  minRankYear;
 	 
- }
+   }
  
- public double getAverageRank(String name , String gender){
+    public double getAverageRank(String name , String gender){
 	 
 	 DirectoryResource dr = new DirectoryResource();
 	 DecimalFormat twoPoints = new DecimalFormat("#.##");
@@ -165,13 +163,13 @@ public String getName(int year , int rank , String gender){
 	
 	 
 	 
- }
+   }
  
- public int getTotalBirthsRankedHigher(int year , String name , String gender){
+    public int getTotalBirthsRankedHigher(int year , String name , String gender){
 	 
-	 String fileName = "C:\\Users\\ASUS DESKtop\\Documents\\BabyInformation\\yob" + String.valueOf(year) + "short.csv";
-     int totalRank = 0;
-     FileResource fr = new FileResource(fileName);
+	    String fileName = "C:\\Users\\ASUS DESKtop\\Documents\\BabyInformation\\yob" + String.valueOf(year) + "short.csv";
+        int totalRank = 0;
+        FileResource fr = new FileResource(fileName);
 		for(CSVRecord rec : fr.getCSVParser(false)){
 			
 			if(!rec.get(1).equals(gender))
@@ -184,27 +182,27 @@ public String getName(int year , int rank , String gender){
 		}
 		
 		return -1;
- }
+   }
  
- public void  testGetTotalBirthsRankedHigher(){
-	 System.out.println(getTotalBirthsRankedHigher(2012 , "Ethan" , "M"));
+    public void  testGetTotalBirthsRankedHigher(){
+	
+    	System.out.println(getTotalBirthsRankedHigher(2012 , "Ethan" , "M"));
 	 
-	 
-	 
- }
+	}
  
- public void testGetAverageRank(){
+    public void testGetAverageRank(){
 	 
-	 System.out.println(getAverageRank("Jacob" , "M"));
- }
+	    System.out.println(getAverageRank("Jacob" , "M"));
+   }
  
- public void testYearOfHighestRank(){
+   public void testYearOfHighestRank(){
 	 
-	 System.out.println(yearOfHighestRank("Mason" , "M"));
+	    System.out.println(yearOfHighestRank("Mason" , "M"));
 	 
- }
+   }
  
    public void testWhatIsNameInYear(){
+	  
 	   WhatIsNameInYear("Isabella" , 2012 , 2014, "F");
 	  
 	   
