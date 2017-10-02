@@ -55,7 +55,7 @@ public class BabyBirth {
 	
 public int getRank(String name , String gender , int year){
 		
-	    System.out.println("entered get rank");
+	   // System.out.println("entered get rank");
 		String fileName = "C:\\Users\\ASUS DESKtop\\Documents\\BabyInformation\\yob" + String.valueOf(year) + "short.csv";
 		
 		int rank = 0;
@@ -68,13 +68,13 @@ public int getRank(String name , String gender , int year){
 			rank = rank + 1;
 			if(rec.get(0).equals(name)){
 				
-				System.out.println("exitting get rank");
+				//System.out.println("exitting get rank");
 				
 				return rank;
 			}
 			
 		}
-		System.out.println("exitting get rank");
+		//System.out.println("exitting get rank");
 		return -1;
 		
 	}
@@ -167,6 +167,32 @@ public String getName(int year , int rank , String gender){
 	 
  }
  
+ public int getTotalBirthsRankedHigher(int year , String name , String gender){
+	 
+	 String fileName = "C:\\Users\\ASUS DESKtop\\Documents\\BabyInformation\\yob" + String.valueOf(year) + "short.csv";
+     int totalRank = 0;
+     FileResource fr = new FileResource(fileName);
+		for(CSVRecord rec : fr.getCSVParser(false)){
+			
+			if(!rec.get(1).equals(gender))
+			    continue;
+			if(rec.get(0).equals(name))
+				
+				return totalRank;
+			
+	       totalRank += Integer.valueOf(rec.get(2));
+		}
+		
+		return -1;
+ }
+ 
+ public void  testGetTotalBirthsRankedHigher(){
+	 System.out.println(getTotalBirthsRankedHigher(2012 , "Ethan" , "M"));
+	 
+	 
+	 
+ }
+ 
  public void testGetAverageRank(){
 	 
 	 System.out.println(getAverageRank("Jacob" , "M"));
@@ -210,12 +236,13 @@ public String getName(int year , int rank , String gender){
 	
 	public void testClassMethods(){
 	
-		testTotalBirths();	
+		testTotalBirths();	;
 		testGetRank();
 		testGetName();
 		testWhatIsNameInYear();
 	    testYearOfHighestRank();
 	    testGetAverageRank();
+	    testGetTotalBirthsRankedHigher();
 		
 	}	
 	
